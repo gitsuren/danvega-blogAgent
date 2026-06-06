@@ -26,7 +26,11 @@ embabel:
           api-key: ${OPENAI_API_KEY}
     logging:
       personality: starwars
+#  models:
+#    default-llm: claude-sonnet-4-6
+#    llms:
+#      reviewer: claude-opus-4-6
   models:
-    default-llm: claude-sonnet-4-6
+    default-llm: gpt-5-mini
     llms:
-      reviewer: claude-opus-4-6
+      reviewer: gpt-5
