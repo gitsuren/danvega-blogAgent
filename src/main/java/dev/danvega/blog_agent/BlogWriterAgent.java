@@ -54,7 +54,8 @@ public class BlogWriterAgent {
     @Action(description = "Write a first draft of the blog post")
     public DraftPost writeDraft(ResearchedTopic research, Ai ai) {
         return ai
-                .withLlm(LlmOptions.withDefaults().withMaxTokens(16384))
+//                .withLlm(LlmOptions.withDefaults().withMaxTokens(16384))
+                .withLlm(LlmOptions.withDefaults())
                 .withId("blog-post-draft-writer")
                 .withPromptContributors(List.of(Personas.WRITER, Personas.JSON_OUTPUT))
                 .creating(DraftPost.class)
@@ -75,7 +76,8 @@ public class BlogWriterAgent {
     @Action(description = "Review and improve the draft")
     public ReviewedPost reviewDraft(DraftPost draft, Ai ai) {
         return ai
-                .withLlm(LlmOptions.withLlmForRole("reviewer").withMaxTokens(16384))
+//                .withLlm(LlmOptions.withLlmForRole("reviewer").withMaxTokens(16384))
+                .withLlm(LlmOptions.withLlmForRole("reviewer"))
                 .withId("blog-post-reviewer")
                 .withPromptContributors(List.of(Personas.REVIEWER, Personas.JSON_OUTPUT))
                 .creating(ReviewedPost.class)

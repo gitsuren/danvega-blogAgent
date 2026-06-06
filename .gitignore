@@ -33,5 +33,5 @@ build/
 .vscode/
 
 ### Project ###
-blog-posts/
+#blog-posts/
 *.log

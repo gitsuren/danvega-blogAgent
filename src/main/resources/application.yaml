@@ -7,7 +7,7 @@ spring:
         stdio:
           connections:
             brave-search-mcp:
-              command: npx
+              command: npx.cmd
               args:
                 - -y
                 - "@modelcontextprotocol/server-brave-search"

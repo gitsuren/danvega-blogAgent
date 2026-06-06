@@ -5,10 +5,26 @@ import com.embabel.common.ai.prompt.PromptContributor;
 
 abstract class Personas {
 
+    //    static final PromptContributor JSON_OUTPUT = PromptContributor.fixed("""
+//            IMPORTANT: Your response will be parsed as JSON.
+//            You MUST escape all double quotes inside string values with a backslash.
+//            For example: "content": "She said \\"hello\\""
+//            """);
     static final PromptContributor JSON_OUTPUT = PromptContributor.fixed("""
-            IMPORTANT: Your response will be parsed as JSON.
-            You MUST escape all double quotes inside string values with a backslash.
-            For example: "content": "She said \\"hello\\""
+            IMPORTANT: Your response MUST be exactly one valid JSON object and nothing else.
+            
+            Rules:
+            - Output only a single top-level JSON object (for example: {"title":"...","content":"..."}).
+            - Do NOT include any explanations, markdown, code fences, or surrounding text.
+            - Escape all double quotes inside JSON string values as \\\".
+            - Escape all backslashes as \\\\\\\\.
+            - Escape newline characters inside JSON string values as \\n (no raw literal newlines inside JSON strings).
+            - Do not include comments or non-JSON tokens (no =, no extra separators).
+            - Trim leading/trailing whitespace; return compact JSON on a single line if possible.
+            - If you cannot produce valid JSON, return: {\"error\":\"unable_to_comply\"}
+            
+            Example:
+            {\"title\":\"Hello World\",\"content\":\"Line1\\nLine2\\nShe said \\\"hello\\\"\",\"tags\":[\"spring\",\"java\"]}
             """);
 
     static final RoleGoalBackstory WRITER = new RoleGoalBackstory(
